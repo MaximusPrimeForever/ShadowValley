@@ -1,0 +1,9 @@
+{
+  "Name": "DynamicShadows",
+  "Author": "YourName",
+  "Version": "1.0.0",
+  "Description": "Adds dynamic shadows that change based on the time of day.",
+  "UniqueID": "YourName.DynamicShadows",
+  "EntryDll": "DynamicShadows.dll",
+  "MinimumApiVersion": "3.0.0"
+}

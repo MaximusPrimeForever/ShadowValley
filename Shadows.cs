@@ -37,6 +37,7 @@ namespace DynamicShadows
         private void OnTimeChanged(object sender, TimeChangedEventArgs e)
         {
             this.prevShadow = this.currentShadow;
+            // times are for testing right now
             if (Game1.timeOfDay >= 600 && Game1.timeOfDay < 630)
             {
                 this.currentShadow = morningShadow;
@@ -69,7 +70,6 @@ namespace DynamicShadows
                 e.Edit(asset =>
                 {
                     var editor = asset.AsImage();
-    
                     IRawTextureData overlay = this.Helper.ModContent.Load<IRawTextureData>(this.currentShadow);
                     editor.PatchImage(overlay);
                 });

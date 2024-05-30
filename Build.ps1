@@ -1,7 +1,9 @@
 # Define paths
 $projectPath = "."
+$manifestPath = "$projectPath\manifest.json"
+$assetsPath = "$projectPath\assets"
 $outputDllPath = "$projectPath\bin\Release\net8.0\DynamicShadows.dll"
-$destinationPath = "C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\ShadowValley\DynamicShadows.dll"
+$destinationPath = "C:\Program Files (x86)\Steam\steamapps\common\Stardew Valley\Mods\ShadowValley\"
 
 # Compile the project
 Write-Output "Cleaning before building..."
@@ -15,8 +17,11 @@ dotnet build $projectPath --configuration Release --force /property:WarningLevel
 if ($?) {
     Write-Output "Build succeeded. Copying the DLL..."
     
-    # Copy the DLL to the destination path
-    Copy-Item -Path $outputDllPath -Destination $destinationPath -Force
+    # Build the mod directory in Stardew Valley directory
+    New-Item -ItemType Directory -Path $destinationPath -Force
+    Copy-Item $outputDllPath -Destination $destinationPath -Force
+    Copy-Item $manifestPath -Destination $destinationPath -Force
+    Copy-Item $assetsPath -Destination $destinationPath -Recurse -Force
     
     # Check if the copy operation was successful
     if ($?) {
